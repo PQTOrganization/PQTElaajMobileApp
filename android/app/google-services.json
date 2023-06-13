@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "510831905901",
+    "project_id": "elaaj-mobile-app",
+    "storage_bucket": "elaaj-mobile-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:510831905901:android:67dd76afcb38b144ee8364",
+        "android_client_info": {
+          "package_name": "com.pakqatar.elaajapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "510831905901-u8ucovfhmt82qnb8sbeai50m4idufje0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDUearSoWlLh0kAYl72LpPX-LB0pkCtQL8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "510831905901-u8ucovfhmt82qnb8sbeai50m4idufje0.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "510831905901-0p2bccr68digr4a5te8parmb20vskcug.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.pakqatar.elaaj"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
