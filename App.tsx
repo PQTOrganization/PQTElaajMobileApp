@@ -1,17 +1,20 @@
 import React, {useEffect} from 'react';
-import {StatusBar} from 'react-native';
+import {Platform, StatusBar} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 import HomeScreen from './src/screens/homescreen';
 import WebPageScreen from './src/screens/webpagescreen';
+import CameraScreen from './src/screens/camera';
+import DocumentPickerDX from './src/components/documentPickerDX';
 
 const Stack = createNativeStackNavigator();
 
 const App = () => {
   useEffect(() => {
+    if (Platform.OS === 'android') StatusBar.setBackgroundColor('#007A48');
+
     StatusBar.setHidden(false);
-    StatusBar.setBackgroundColor('#007A48');
     StatusBar.setBarStyle('light-content');
   }, []);
 
@@ -23,6 +26,8 @@ const App = () => {
         }}>
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="WebPageView" component={WebPageScreen} />
+        <Stack.Screen name="Camera" component={CameraScreen} />
+        <Stack.Screen name="DocumentPicker" component={DocumentPickerDX} />
       </Stack.Navigator>
     </NavigationContainer>
   );

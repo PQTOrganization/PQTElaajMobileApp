@@ -26,7 +26,10 @@ const Splash = props => {
           style={{height: 200}}
         />
       </FadeInViewDX>
-      <ProgressBar progress={props.progress} style={{width: 200}} />
+      <ProgressBar
+        /*progress={props.progress}*/ style={{width: 200}}
+        animatedValue={props.progress}
+      />
     </View>
   );
 };

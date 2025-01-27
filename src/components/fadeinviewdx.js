@@ -1,8 +1,8 @@
 import React, {useRef, useEffect} from 'react';
-import {Animated} from 'react-native';
+import {Animated, useAnimatedValue} from 'react-native';
 
 const FadeInViewDX = props => {
-  const fadeAnim = useRef(new Animated.Value(0)).current; // Initial value for opacity: 0
+  const fadeAnim = useAnimatedValue(0); // useRef(new Animated.Value(0)).current; // Initial value for opacity: 0
 
   useEffect(() => {
     Animated.timing(fadeAnim, {
