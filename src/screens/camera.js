@@ -1,20 +1,11 @@
 import {useEffect, useRef, useState} from 'react';
-import {
-  Image,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-  DeviceEventEmitter,
-  Dimensions,
-} from 'react-native';
-import {useIsFocused, useNavigation} from '@react-navigation/core';
+import {Image, View, DeviceEventEmitter} from 'react-native';
+import {useNavigation} from '@react-navigation/core';
 import RNFS from 'react-native-fs';
 import {Button, useTheme} from 'react-native-paper';
-import BottomSheetModal from '../components/bottomSheetModal';
 import ImageCropPicker from 'react-native-image-crop-picker';
-import pickDirectory from 'react-native-document-picker';
 import {storeImage} from '../components/localStorageDX';
+import {SafeAreaView} from 'react-native-safe-area-context';
 
 const CAPTURE_BUTTON_SIZE = 78;
 const BORDER_WIDTH = CAPTURE_BUTTON_SIZE * 0.1;
@@ -58,63 +49,69 @@ const CameraScreen = ({route}) => {
   }, [route.params.keyId]);
 
   const openReactCamera = () => {
-    ImageCropPicker.openCamera({
-      cropping: true,
-      showCropFrame: true,
-      showCropGuidelines: true,
-      // multiple:true,
-      freeStyleCropEnabled: true,
-      mediaType: 'photo',
-      // cropperToolbarTitle:'',
-      cropperCircleOverlay: false,
-      // showCropGuidelines:false,
-      // showCropFrame:false,
-      hideBottomControls: false, //to hide bottom
-    })
-      .then(image => {
-        setPhoto(image);
-        const fileName = 'documentphoto-' + new Date().getTime() + '.jpg';
-        setFileName(fileName);
-        setFileSize(image.size);
-        const path = RNFS.DocumentDirectoryPath + '/' + fileName;
-        RNFS.moveFile(image.path, path).then(() => setPhotoPath(path));
+    // Set timeout has been added for iOS issue
+    setTimeout(() => {
+      ImageCropPicker.openCamera({
+        cropping: true,
+        showCropFrame: true,
+        showCropGuidelines: true,
+        // multiple:true,
+        freeStyleCropEnabled: true,
+        mediaType: 'photo',
+        // cropperToolbarTitle:'',
+        cropperCircleOverlay: false,
+        // showCropGuidelines:false,
+        // showCropFrame:false,
+        hideBottomControls: false, //to hide bottom
       })
-      .catch(err => {
-        console.log('ERROR CAMERA', err);
-        // throw err;
-        navigation.goBack();
-      });
-    return null;
+        .then(image => {
+          setPhoto(image);
+          const fileName = 'documentphoto-' + new Date().getTime() + '.jpg';
+          setFileName(fileName);
+          setFileSize(image.size);
+          const path = RNFS.DocumentDirectoryPath + '/' + fileName;
+          RNFS.moveFile(image.path, path).then(() => setPhotoPath(path));
+        })
+        .catch(err => {
+          console.log('ERROR CAMERA', err);
+          // throw err;
+          navigation.goBack();
+        });
+      return null;
+    }, 1000);
   };
 
   const openGallery = () => {
-    ImageCropPicker.openPicker({
-      cropping: true,
-      showCropFrame: true,
-      showCropGuidelines: true,
-      // multiple:true,
-      freeStyleCropEnabled: true,
-      mediaType: 'photo',
-      // cropperToolbarTitle:'',
-      cropperCircleOverlay: false,
-      // showCropGuidelines:false,
-      // showCropFrame:false,
-      hideBottomControls: false, //to hide bottom
-    })
-      .then(image => {
-        setPhoto(image);
-        const fileName = 'documentphoto-' + new Date().getTime() + '.jpg';
-        setFileName(fileName);
-        setFileSize(image.size);
-        const path = RNFS.DocumentDirectoryPath + '/' + fileName;
-        RNFS.moveFile(image.path, path).then(() => setPhotoPath(path));
+    // Set timeout has been added for iOS issue
+    setTimeout(() => {
+      ImageCropPicker.openPicker({
+        cropping: true,
+        showCropFrame: true,
+        showCropGuidelines: true,
+        // multiple:true,
+        freeStyleCropEnabled: true,
+        mediaType: 'photo',
+        // cropperToolbarTitle:'',
+        cropperCircleOverlay: false,
+        // showCropGuidelines:false,
+        // showCropFrame:false,
+        hideBottomControls: false, //to hide bottom
       })
-      .catch(err => {
-        console.log('ERROR CAMERA', err);
-        // throw err;
-        navigation.goBack();
-      });
-    return null;
+        .then(image => {
+          setPhoto(image);
+          const fileName = 'documentphoto-' + new Date().getTime() + '.jpg';
+          setFileName(fileName);
+          setFileSize(image.size);
+          const path = RNFS.DocumentDirectoryPath + '/' + fileName;
+          RNFS.moveFile(image.path, path).then(() => setPhotoPath(path));
+        })
+        .catch(err => {
+          console.log('ERROR CAMERA', err);
+          // throw err;
+          navigation.goBack();
+        });
+      return null;
+    }, 1000);
   };
 
   const onAcceptPhoto = async () => {
@@ -151,46 +148,46 @@ const CameraScreen = ({route}) => {
   const theme = useTheme();
 
   return (
-    <View style={{flex: 1}}>
+    <SafeAreaView style={{flex: 1, paddingVertical: 20}}>
+      {/* <View style={{flex: 1}}> */}
       {photoPath != '' && (
         <View style={{flex: 1}}>
-          <>
-            <Image
-              style={{
-                flex: 1,
-                width: '100%',
-                height: '100%',
-                resizeMode: 'contain',
-              }}
-              source={{uri: 'file://' + photoPath}}
-            />
-            <View
-              style={{
-                position: 'absolute',
-                bottom: 0,
-                flexDirection: 'row',
-                justifyContent: 'space-between',
-                width: '100%',
-              }}>
-              <Button
-                onPress={onRejectPhoto}
-                color={theme.colors.error}
-                mode="contained"
-                style={{flex: 1, borderRadius: 0}}>
-                Reject
-              </Button>
-              <Button
-                onPress={onAcceptPhoto}
-                color={'green'}
-                mode="contained"
-                style={{flex: 1, borderRadius: 0}}>
-                Accept
-              </Button>
-            </View>
-          </>
+          <Image
+            style={{
+              flex: 1,
+              width: '100%',
+              height: '100%',
+              resizeMode: 'contain',
+            }}
+            source={{uri: 'file://' + photoPath}}
+          />
+          <View
+            style={{
+              position: 'absolute',
+              bottom: 0,
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+              width: '100%',
+            }}>
+            <Button
+              onPress={onRejectPhoto}
+              buttonColor={theme.colors.error}
+              mode="contained"
+              style={{flex: 1, borderRadius: 0, marginHorizontal: 2}}>
+              Reject
+            </Button>
+            <Button
+              onPress={onAcceptPhoto}
+              buttonColor={'green'}
+              mode="contained"
+              style={{flex: 1, borderRadius: 0, marginHorizontal: 2}}>
+              Accept
+            </Button>
+          </View>
         </View>
       )}
-    </View>
+      {/* </View> */}
+    </SafeAreaView>
   );
 };
 

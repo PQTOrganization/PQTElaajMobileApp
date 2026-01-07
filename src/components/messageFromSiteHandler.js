@@ -121,6 +121,11 @@ const callMedIQ = async employeeData => {
         employeeData?.customerName,
         appGroupIdentifier,
       );
+      await SharedGroupPreferences.setItem(
+        'branchId',
+        employeeData?.branchId,
+        appGroupIdentifier,
+      );
 
       const supported = await Linking.canOpenURL(appURI);
 
@@ -148,6 +153,7 @@ const callMedIQ = async employeeData => {
             emailAddress: employeeData?.emailAddress,
             customerCode: employeeData?.customerCode,
             customerName: employeeData?.customerName,
+            branchId: employeeData?.branchId,
           });
         else {
           return Linking.openURL(storeURL);

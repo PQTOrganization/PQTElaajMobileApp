@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+   PrivacyInfo.xcprivacy
+   ilajmobileapp
+
+   Created by Compass DX Pvt on 23/05/2024.
+   Copyright (c) 2024 ___ORGANIZATIONNAME___. All rights reserved.
+-->
+<plist version="1.0">
+<dict>
+  <key>NSPrivacyAccessedAPICategoryUserDefaults</key>
+  <string>This app uses User Defaults to save user preferences and settings.</string>
+  <key>NSPrivacyAccessedAPICategoryDiskSpace</key>
+  <string>This app accesses disk space to manage content upload and downloaded content.</string>
+  <key>NSPrivacyAccessedAPICategorySystemBootTime</key>
+  <string>This app uses system boot time to optimize performance and uptime tracking.</string>
+  <key>NSPrivacyAccessedAPICategoryFileTimestamp</key>
+  <string>This app accesses file timestamps to manage and organize user files efficiently.</string>
+</dict>
+</plist>

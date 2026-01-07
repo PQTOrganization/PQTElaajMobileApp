@@ -3,7 +3,6 @@ import {
   DeviceEventEmitter,
   BackHandler,
   View,
-  SafeAreaView,
   Alert,
   Modal,
   Text,
@@ -15,7 +14,8 @@ import {
 import {useNavigation} from '@react-navigation/native';
 import WebView from 'react-native-webview';
 import RNFetchBlob from 'react-native-fetch-blob';
-import {Button, useTheme} from 'react-native-paper';
+import {useTheme} from 'react-native-paper';
+import {SafeAreaView} from 'react-native-safe-area-context';
 
 import messageFromSiteHandler from '../components/messageFromSiteHandler';
 
@@ -303,8 +303,8 @@ const HomeScreen = () => {
         ref={webviewRef}
         source={{
           // uri: 'http://192.168.0.110:3000/test',
-          uri: 'https://elaaj.webapp.compass-dx.com/',
-          // uri: 'https://elaaj.pakqatar.com.pk/',
+          // uri: 'https://elaaj.webapp.compass-dx.com/',
+          uri: 'https://elaaj.pakqatar.com.pk/',
         }}
         javaScriptEnabled={true}
         cacheEnabled={false}

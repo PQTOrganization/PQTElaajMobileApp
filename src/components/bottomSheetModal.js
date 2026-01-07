@@ -18,7 +18,7 @@ const BottomSheetModal = props => {
     <RBSheet
       ref={refRBSheet}
       useNativeDriver={true}
-      height={125}
+      height={145}
       onClose={() => props.onClose()}
       customStyles={{
         wrapper: {
